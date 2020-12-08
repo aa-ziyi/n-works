@@ -1,0 +1,72 @@
+{
+  "name": "vs-test4",
+	"displayName": "vs-test4",
+	"description": "",
+	"version": "0.0.1",
+	"engines": {
+		"vscode": "^1.50.0"
+	},
+	"categories": [
+		"Other"
+	],
+	"activationEvents": [
+    "onCommand:testhelloWorld"
+	],
+	"main": "./extension.js",
+	"contributes": {
+		"viewsContainers": {
+      "activitybar": [
+        {
+          "id": "Jxworks",
+          "title": "Jxworks",
+          "icon": "assets/sidebar-logo.png"
+        }
+      ]
+		},
+		"views":{
+			"Jxworks": [{
+					"id": "welcome1",
+          "name": "welcome1",
+          "when": "iceworks:projectIsNotTarget"
+				},
+				{
+					"id": "package-outline",
+					"name": "Outline"
+				}
+			]
+		},
+		"viewsWelcome": [
+      {
+        "view": "welcome1",
+        "contents":"To use Iceworks, you need to open or create a application first. \n[Open a Folder](command:vscode.openFolder)\n[Create Application](command:testhelloWorld)\n[Configuration](command:iceworksApp.configHelper.start)\nRead the [docs](https://marketplace.visualstudio.com/items?itemName=iceworks-team.iceworks) to learn more about how to use Iceworks in VS Code."
+      }
+    ],
+		"commands": [{
+				"command": "testhelloWorld",
+				"title": "test-hello"
+		}],
+		"menus": {
+			"editor/title": [{
+			"command": "testhelloWorld",
+			"group": "navigation"
+    }]
+}
+	},
+	"scripts": {
+		"lint": "eslint .",
+		"pretest": "npm run lint",
+		"test": "node ./test/runTest.js"
+	},
+	"devDependencies": {
+        "@types/vscode": "^1.50.0",
+        "@types/glob": "^7.1.3",
+        "@types/mocha": "^8.0.0",
+        "@types/node": "^12.11.7",
+        "eslint": "^7.9.0",
+        "glob": "^7.1.6",
+        "mocha": "^8.1.3",
+        "typescript": "^4.0.2",
+        "vscode-test": "^1.4.0"
+    }
+
+}
