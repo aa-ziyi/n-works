@@ -1,6 +1,7 @@
 // The module 'vscode' contains the VS Code extensibility API
 // Import the module and reference it with the alias vscode in your code below
 const vscode = require('vscode');
+const path = require('path');
 
 
 // this method is called when your extension is activated
@@ -32,7 +33,34 @@ function activate(context) {
             retainContextWhenHidden: true, // webview被隐藏时保持状态，避免被重置
         }
     );
-    panel.webview.html = `<html><body>webview</body></html>`
+		panel.webview.html = getWebViewContent(context,'web/dist/index.html');
+
+		function getPath(context,relativePath) {
+			const diskPath = vscode.Uri.file(path.join(context.extensionPath, relativePath));
+			return diskPath.with({ scheme: 'vscode-resource' }).toString();
+		}
+		
+		function getWebViewContent(context) {
+			let src = getPath(context,'web/dist/css/app.fb0c6e1c.css');
+			let app = getPath(context,'web/dist/js/app.c35ff3ea.js');
+			let vendors = getPath(context,'web/dist/js/chunk-vendors.56acd13b.js');
+			return  `<!DOCTYPE html>
+				<html>
+				<head>
+					<meta charset="utf-8">
+					<meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
+					<meta name="theme-color" content="#000000">
+					<title>Iceworks</title>
+					<link rel="stylesheet" type="text/css" href="${src}" />
+				</head>
+				<body>
+					<noscript>You need to enable JavaScript to run this app.</noscript>
+					<div id="app">sdfsdfsdfsdf</div>
+					<script src="${vendors}"></script>
+					<script src="${app}"></script>
+				</body>
+			</html>`
+		}
 	});
 	subscriptions.push(disposable);
 }
