@@ -1,17 +1,30 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <a @click="handleDown">
+     下载模版
+    </a>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import * as simpleGit from 'simple-git/promise';
+import * as path from 'path';
 export default {
   name: 'App',
   components: {
-    HelloWorld
+
+  },
+  created() {
+  },
+  methods:{
+    handleDown() {
+      let localsrc = path.join('/Users/koci/project/git-test','daydayup');
+      console.log(localsrc);
+      console.log(simpleGit());
+      // simpleGit().clone('https://github.com:aa-ziyi/daydayup.git',['/Users/koci/project/git-test']).then((res)=>{
+      //   console.log(res);
+      // })
+    }
   }
 }
 </script>

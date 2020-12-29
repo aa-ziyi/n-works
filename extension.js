@@ -41,9 +41,9 @@ function activate(context) {
 		}
 		
 		function getWebViewContent(context) {
-			let src = getPath(context,'web/dist/css/app.fb0c6e1c.css');
-			let app = getPath(context,'web/dist/js/app.c35ff3ea.js');
-			let vendors = getPath(context,'web/dist/js/chunk-vendors.56acd13b.js');
+			let src = getPath(context,'web/dist/css/app.css');
+			let app = getPath(context,'web/dist/js/app.js');
+			let vendors = getPath(context,'web/dist/js/chunk-vendors.js');
 			return  `<!DOCTYPE html>
 				<html>
 				<head>
